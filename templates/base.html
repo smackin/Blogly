@@ -7,9 +7,18 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-    <nav> NAV BAR </nav>
+    <nav> 
+        <a>Home</a>
+        <a>Login</a>
+        <a>Logout</a>
+        <a>Sign Up</a>
+    </nav>
 {%block content %}
-<h1>Home Page </h1>
+<h1> Welcome to Blogly!  </h1>
+<a href="/users"> See all Blogly users </a>
+<br>
+<a href="/users/new"> Sign up to see more </a>
+
 {% endblock %}
 
 </body>
