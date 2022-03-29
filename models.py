@@ -36,4 +36,8 @@ class Post(database.Model):
     post_id = database.Column(database.Integer, primary_key=True)
     title = database.Column(database.Text, nullable=False)
     content = database.Column(database.Text, nullable=False)
+    created_at = database.Column(
+        database.DateTime,
+        nullable=False,
+        default=datetime.datetime.now)
     user_id = database.Column(database.Integer, database.ForeignKey(User.user_id), nullable=False)

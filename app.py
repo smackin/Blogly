@@ -17,7 +17,8 @@ database.create_all()
 @app.route('/')
 def show_home():
     """display home page with list of users to select """
-    return render_template('base.html')
+    posts = Post.query.all()
+    return render_template('home_posts.html', posts=posts)
 
 ##### User routes - singup, delete, show all ####
 @app.route('/users')
@@ -50,9 +51,9 @@ def create_user():
 def show_users(user_id):
     """ show list of all users in DB"""
     user = User.query.get_or_404(user_id)
-    return render_template ('show_user.html', user=user)
+    return render_template ('show_user.html', user=user, post=post_id)
 
-@app.route('/users/<int:user_id>/edit')
+@app.route('/users/<int:user_id>/edit') 
 def edit_user(user_id):
     """display form to edit existing user"""
     user = User.query.get_or_404(user_id)
@@ -95,10 +96,11 @@ def user_new_post_form(user_id):
 def new_post(user_id):
     """form submission to add post for a user """
     user = User.query.get_or_404(user_id)
+    
     new_post = Post(
         title = request.form['title'],
         content = request.form['content'],
-        user_id = user)
+        user_id = user_id)
     
     database.session.add(new_post)
     database.session.commit()
