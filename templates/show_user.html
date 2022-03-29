@@ -28,6 +28,17 @@
       </button>
     </form>
 
+    <h2> {{user.first_name}}'s Posts </h2>
+    <ul>
+      {% for post in user.new_posts %}
+         <li>
+           <a href="/posts/{{ post.post_id }}"> {{ post.title }}</a>
+            <p> {{post.created_at}} </p>
+         </li> 
+         {% endfor %}
+    </ul>
+
+    <p> <a href='/users/{{ user.user_id}}/posts/new'> ADD A POST!</p>
   </div>
 </div>
 

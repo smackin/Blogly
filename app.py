@@ -50,7 +50,7 @@ def create_user():
 def show_users(user_id):
     """ show list of all users in DB"""
     user = User.query.get_or_404(user_id)
-    return render_template ('show.html', user=user)
+    return render_template ('show_user.html', user=user)
 
 @app.route('/users/<int:user_id>/edit')
 def edit_user(user_id):
@@ -98,12 +98,10 @@ def new_post(user_id):
     new_post = Post(
         title = request.form['title'],
         content = request.form['content'],
-        user = user)
+        user_id = user)
+    
     database.session.add(new_post)
     database.session.commit()
-    flash(f"Your post about '{new_post.title}' has been added.")
     
     return redirect(f"/users/{user_id}")
-
-
 
