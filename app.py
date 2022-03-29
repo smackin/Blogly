@@ -64,7 +64,7 @@ def update_user(user_id):
     user = User.query.get_or_404(user_id)
     user.first_name = request.form["first_name"]
     user.last_name = request.form["last_name"]
-    user.user_img = request.form["image_url"]
+    user.image_url = request.form["image_url"]
     
     database.session.add(user)
     database.session.commit()
